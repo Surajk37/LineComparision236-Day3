@@ -19,15 +19,17 @@
 
             double lengthofLine1 = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2)); // Distance Formula
             double lengthofLine2 = Math.Sqrt(Math.Pow(x4 - x3, 2) + Math.Pow(y4 - y3, 2)); 
-            Console.WriteLine("\nThe Length Of Line First  = " + lengthofLine1);
-            Console.WriteLine("The Length of Line Second = " + lengthofLine2 +"\n");
+            Console.WriteLine("\nThe Length Of First Line  = " + lengthofLine1);
+            Console.WriteLine("The Length of Second Line = " + lengthofLine2 +"\n");
 
-            bool check = lengthofLine1.Equals(lengthofLine2);
+            int check = lengthofLine1.CompareTo(lengthofLine2); //Comparing two lines by using 'CompareTo' method 
             Console.WriteLine(check);
-            if (check)
-                Console.WriteLine("Both Lines are Equal");
+            if (check > 0)
+                Console.WriteLine("Line 1 is Greater");
+            else if (check < 0)
+                Console.WriteLine("Lines 2 is Greater");
             else
-                Console.WriteLine("Lines are Not Equal");
+                Console.WriteLine("Both are Equal");
                 Console.ReadLine();
         }
     }
