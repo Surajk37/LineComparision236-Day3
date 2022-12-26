@@ -1,36 +1,56 @@
-﻿namespace LineComparision
+﻿using System.Net.Http.Headers;
+
+namespace LineComparision236
 {
+    class Comparision
+    {
+        public double xAxisStart, yAxisStart, xAxisEnd, yAxisEnd;
+        public void PointValues()
+        {
+            Console.WriteLine("Enter X Start");
+            xAxisStart = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Enter Y Start");
+            yAxisStart = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Enter X End");
+            xAxisEnd = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Enter Y End");
+            yAxisEnd = Convert.ToDouble(Console.ReadLine());
+        }
+
+        public double GetLength()
+        {
+            double length = Math.Sqrt(Math.Pow((xAxisEnd - xAxisStart), 2) + Math.Pow((yAxisEnd - yAxisStart), 2)); //Distance Formula
+            return length;
+        }
+    }
     class LineCompare
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("\tWelcome To Line Comparision Computation Program\n");
-            Console.WriteLine("Enter First Line co-ordinates of x1,y1,x2,y2");
-            int x1=Convert.ToInt32(Console.ReadLine());
-            int y1=Convert.ToInt32(Console.ReadLine());
-            int x2 = Convert.ToInt32(Console.ReadLine());
-            int y2 = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Enter Second Line co-ordinates of x3,y3,x4,y4");
-            int x3 = Convert.ToInt32(Console.ReadLine());
-            int y3 = Convert.ToInt32(Console.ReadLine());
-            int x4 = Convert.ToInt32(Console.ReadLine());
-            int y4 = Convert.ToInt32(Console.ReadLine());
+            Comparision firstLine = new Comparision();
+            Comparision secondLine = new Comparision();
+            firstLine.PointValues();
+            double firstLineLength = firstLine.GetLength();
+            Console.WriteLine("Length of first Line: " + firstLineLength+"\n");
+            secondLine.PointValues();
+            double secondLineLength = secondLine.GetLength();
+            Console.WriteLine("Length of Second Line: " + secondLineLength);
+            if (firstLineLength.CompareTo(secondLineLength) > 0)
+            {
+                Console.WriteLine("Line1 is greater than Line2");
+            }
+            else if (firstLineLength.CompareTo(secondLineLength) == 0)
 
-            double lengthofLine1 = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2)); // Distance Formula
-            double lengthofLine2 = Math.Sqrt(Math.Pow(x4 - x3, 2) + Math.Pow(y4 - y3, 2)); 
-            Console.WriteLine("\nThe Length Of First Line  = " + lengthofLine1);
-            Console.WriteLine("The Length of Second Line = " + lengthofLine2 +"\n");
-
-            int check = lengthofLine1.CompareTo(lengthofLine2); //Comparing two lines by using 'CompareTo' method 
-            Console.WriteLine(check);
-            if (check > 0)
-                Console.WriteLine("Line 1 is Greater");
-            else if (check < 0)
-                Console.WriteLine("Lines 2 is Greater");
+            {
+                Console.WriteLine("Lines are equal");
+            }
             else
-                Console.WriteLine("Both are Equal");
-                Console.ReadLine();
+            {
+                Console.WriteLine("Line2 is greater than Line1");
+            }
+            Console.ReadLine();
         }
     }
+    
 }
